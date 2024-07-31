@@ -1,0 +1,127 @@
+$ git config --global user.name "Ruben Agapito"
+$ git config --global user.email ruben.agapito@gmail.com
+
+# para poner el nombre del directorio por defecto cada vez que crea un branch
+$ git config --global init.default branch main
+
+# para ayuda concisa sobre algun comando, p.ej. config
+$ git config -h
+
+# para ayuda da una pág web detallada sobre "config"
+$ git help config 
+
+# para borrar toda la pantalla
+$ clear 
+
+
+#ir al directorio que quiero trabajar "folder1"
+$ cd c:/users/ruben/folder1
+
+# inicializar que trabajaré en este directorio
+$ git init 
+
+# en file explorer activar hidden files
+
+# para saber cómo va nuestro directorio de trabajo hasta ahora
+$ git status
+
+# dentro del folder de trabajo, si deseamos "track a file"
+$ git add nombre.txt
+
+$ git status 
+
+# si no deseo track a file que ya estoy siguiendo
+$ git rm --cached nombre.txt 
+
+# supóngase que deseamos que haya un archivo que no quiero que sea trackable
+# Abrir File Explorer y crear el folder ".gitignore"
+  #abrimos el archivo .gitignore en Notepad++
+  # y escribimos:
+  
+  # ignorar todos los archivos .log
+  *.log
+  
+# como hacer track de todos los archivos de folder1
+$ git add .               /// otra manera: git add --all
+
+# ahora todos los archivos están en staging
+
+# ahora deseamos escribirlos commit, agregarlos al history book
+$ git commit -m "siempre poner un comentario de porqué hice commit"
+
+# ahora supongamos que cambiamos algun archivo: file01.txt
+$ git status
+
+     # saldra que un archivo ha sido modificada, para ver las diferencias ponemos
+	 $ git diff
+	 
+# supongamos que estamos satisfechos con el cambio, hacemos lo siguiente para commit
+$ git add file01.txt       # el archivo está en staging
+                           # tenemos: working files, staging, commit (3 ambientes)
+						   
+# supongamos deseo sacar el archivo file01.txt del staging area:
+$ git restore --staged file01.txt   # file01.txt volvió a working area
+
+# si deseamos poner todos los archivos del working area a commit area, sin pasar
+# por staging area, hacemos:
+$ git commit -a -m "poner comentario de porqué hacemos commit"
+
+# supongamos que hemos borrado un archivo que estaba siendo trackeado, si deseamos
+# recuperarlo hacemos:
+$ git restore "nombrearchivo.txt"
+
+# si deseamos cambiar el nombre de un archivo del working area: 
+$ git mv "nombreViejo.txt" "nombreNuevo.txt"
+
+# actualizar este cambio al history book:
+$ git commit -m "se cambio el nombre a un archivo"
+
+# si deseamos listar todos los commit que se han hecho hasta ahora:
+$ git log
+
+# si deseamos ver todos los commit en forma sucinta:
+$ git log --oneline
+
+# para cambiar el mensaje del ultimo commit
+$ git commit -m "poner nuevo mensaje" --amend
+
+# para crear una nueva rama
+$ git branch NombreNuevaRama
+
+# para ver cuantas branches haya
+$ git branch
+
+# para ir a la branch que deseemos
+$ git switch NombreNuevaRama
+
+# hacemos algun cambio en un archivo de la NuevaRama y deseamos commit este archivo
+$ git commit -a -m "cambio hecho en NuevaRama"
+
+# si deseamos que el cambio hecho en NuevaRama también se haga en la RamaAnterior
+$ git switch RamaAnterior
+$ git merge -m "actualizar rama como archivos de NuevaRama" NuevaRama 
+
+# como ya se hizo un merge, la NuevaRama está por las santas puras, borramos esta rama
+$ git branch -d NuevaRama
+
+# crear una nueva branch e ir a esa rama: Rama02
+$ git switch -c Rama02
+
+=============================== GITHUB ======================================
+
+# podemos crear un repositorio en github y cargar nuestra repositorio local allí.
+# por ejemplo en github tengo mi repositorio prueba:
+git remote add origin https://github.com/RaarMath/prueba.git
+git branch -M main
+git push -u origin main   # con esto carga lo que tengo en main de mi repositorio local
+
+# en caso quiera subir todas mis branches a github ponemos:
+$ git push --all
+
+# como bajar los cambios hechos en github a nuestra repositorio local
+$ git fetch
+
+$ git merge   # para pegar los cambios a nuestra copia local 
+
+# si deseamos combinar fetch y merge en un solo comando.
+$ git pull
