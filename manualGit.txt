@@ -125,3 +125,5 @@ $ git merge   # para pegar los cambios a nuestra copia local
 
 # si deseamos combinar fetch y merge en un solo comando.
 $ git pull
+
+# ahora ponemos algo más por aquí.
